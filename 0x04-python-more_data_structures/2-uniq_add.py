@@ -2,6 +2,8 @@
 def uniq_add(my_list=[]):
     if not my_list:
         return None
+    if my_list is None:
+        return
     seen = set()
     _sum = 0
     for i in my_list:
