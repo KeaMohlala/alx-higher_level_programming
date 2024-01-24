@@ -1,23 +1,12 @@
 #!/usr/bin/python3
+
+"""
+Class that defines a square
+"""
+
+
 class Square:
     """
-    This is the documentation for the Square class.
-
-    Attributes:
-     None.
-
-    Methods:
-      __init__(): Initializes a new object of the class.
+    Documentation for square class
     """
-
-    def __init__(self):
-        """
-        Initializes object right after it's created.
-
-        Parameters:
-          None.
-
-        Returns:
-          None.
-        """
-        pass
+    pass
