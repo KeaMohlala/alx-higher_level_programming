@@ -13,6 +13,7 @@ class TestMaxInteger(unittest.TestCase):
         self.assertEqual(max_integer([67, 98, 1000, 200000]), 200000)
         self.assertEqual(max_integer([1, 67, 88, 88, 3]), 88)
         self.assertEqual(max_integer([1, 67, 88, 67, 3]), 88)
+        self.assertEqual(max_integer([88]), 88)
 
     def test_negatives(self):
         """
