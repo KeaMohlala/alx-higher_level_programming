@@ -17,14 +17,20 @@ Test cases for my_list function
 >>> print(my_list)
 [1, 4, 2, 3, 5]
 
+>>> my_list[3] = 6
+
+>>> my_list[0:4]
+[1, 4, 2, 6]
+
+>>> my_list.pop()
+5
+
+>>> my_list.count(3)
+0
 
 >>> neg_list = MyList([-2, -2, -6, -9, -7, -1])
 >>> neg_list.insert(0, -98)
 >>> neg_list.print_sorted()
 [-98, -9, -7, -6, -2, -2, -1]
->>> print(neg_list)
+>>> (neg_list)
 [-98, -2, -2, -6, -9, -7, -1]
-
->>> empty_list = MyList()
->>> empty_list.printed_sorted()
-[]
