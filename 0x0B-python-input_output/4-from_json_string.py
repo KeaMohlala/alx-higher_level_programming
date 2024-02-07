@@ -1,3 +1,20 @@
 #!/usr/bin/python3
+import json
 """
-module with a function 
+A module with a function deserializes a JSON string
+"""
+
+
+def from_json_string(my_str):
+    """
+    function returns an object (Python data structure)
+    represented JSON string
+
+    Args:
+     my_str: data structure
+
+    Return:
+    an object
+    """
+    data = json.loads(my_str)
+    return data
