@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-import json
 """
 A module with a function deserializes a JSON string
 """
+import json
 
 
 def from_json_string(my_str):

@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-import json
 """
 A module with a function serializes an object
 """
+import json
 
 
 def to_json_string(my_obj):
