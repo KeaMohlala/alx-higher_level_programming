@@ -2,6 +2,7 @@
 """
 Module that defines a Rectangle class
 """
+from models.base import Base
 
 
 class Rectangle(Base):
@@ -16,7 +17,7 @@ class Rectangle(Base):
         Args:
         width: width of the rectangle
         height: height of the rectangle
-        x: position of the tectangle
+        x: position of the rectangle
         y: position of the rectangle
         id: id of the instance
         """
