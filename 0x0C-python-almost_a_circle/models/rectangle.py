@@ -160,3 +160,26 @@ class Rectangle(Base):
             f"[{self.__class__.__name__}] ({self.id}) "
             f"{self.x}/{self.y} - {self.width}/{self.height}"
         )
+
+    def update(self, *args, **kwargs):
+        """
+        method accepts kwargs(key word arguments) and
+        args to update the instance attributes
+
+        if args is provided and not empty, kwargs should be ignored
+        """
+        if args:
+            if len(args) == 1:
+                self.id = args[0]
+            elif len(args) == 2:
+                self.id, self.width = args
+            elif len(args) == 3:
+                self.id, self.width, self.height = args
+            elif len(args) == 4:
+                self.id, self.width, self.height, self.x = args
+            else:
+                self.id, self.width, self.height, self.x, self.y = args
+        else:
+            for attr, value in kwargs.items():
+                if hasattr(self, attr):
+                    setattr(self, attr, value)
