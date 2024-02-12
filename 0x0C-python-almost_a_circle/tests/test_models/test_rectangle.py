@@ -30,6 +30,7 @@ class TestRectangle(unittest. TestCase):
         """
         del self.r1
         del self.r2
+        del self.r3
 
     def test_setup(self):
         """

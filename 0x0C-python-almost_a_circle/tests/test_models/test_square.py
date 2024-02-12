@@ -12,7 +12,7 @@ from models.square import Square
 from models.base import Base
 
 
-class Square(unittest.TestCase):
+class TestSquare(unittest.TestCase):
     """
     tests the square class
     """
