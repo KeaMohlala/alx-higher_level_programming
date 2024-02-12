@@ -4,6 +4,9 @@ tests for rectangle class
 """
 
 import unittest
+import sys
+import io
+from unittest.mock import patch
 from models.rectangle import Rectangle
 from models.base import Base
 
@@ -125,3 +128,165 @@ class TestRectangle(unittest. TestCase):
         self.assertEqual(self.r3.y, 1)
         self.assertEqual(self.r1.y, 2)
         self.assertEqual(self.r2.y, 1)
+
+    def test_update(self):
+        """
+        tests the update method
+        """
+        self.r1.update(10, 10, 10, 10, 10)
+        self.r2.update(y=1, width=2, x=3, id=89)
+        self.r3.update(width=1, x=2)
+
+        self.assertEqual(self.r1.id, 10)
+        self.assertEqual(self.r1.y, 10)
+        self.assertEqual(self.r2.id, 89)
+        self.assertEqual(self.r2.width, 2)
+        self.assertEqual(self.r3.x, 2)
+
+    def test_update_combined(self):
+        """
+        test update method with a combined kwargs and args
+        """
+        self.r1.update(37, id=3)
+
+    def test_todictionary(self):
+        """
+        test the to dictionary method
+        """
+        _dict = {
+            "width": 1411, "height": 781, "x": 3,
+            "y": 4, "id": self.r3.id
+        }
+
+        self.assertEqual(self.r3.to_dictionary(), _dict)
+
+    def test_strmethod(self):
+        """
+        test the str special method
+        """
+        _st1 = f"[Rectangle] ({self.r1.id}) 0/0 - 10/2"
+        _st2 = f"[Rectangle] ({self.r2.id}) 0/0 - 10/2"
+        _st3 = f"[Rectangle] ({self.r3.id}) 3/4 - 1411/781"
+
+        self.assertEqual(self.r1.__str__(), _st1)
+        self.assertEqual(self.r2.__str__(), _st2)
+        self.assertEqual(self.r3.__str__(), _st3)
+
+
+class TestDisplayFunction(unittest.TestCase):
+    """
+    tests the display method
+    """
+
+    def setUp(self):
+        """
+        set up the test environment
+        """
+        self.r1 = Rectangle(2, 2)
+        self.r2 = Rectangle(2, 2, 2, 1)
+        self.r3 = Rectangle(10, 5)
+        self.r4 = Rectangle(10, 5, 1, 3)
+        self.r5 = Rectangle(20, 35)
+        self.r6 = Rectangle(20, 35, 2, 1)
+
+    def test_display1(self):
+        """
+        tests the display method
+        """
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+
+        self.r1.display()
+
+        sys.stdout = sys.__stdout__
+
+        output = capturedOutput.getvalue()
+
+        expected_output_r1 = "##\n##\n"
+
+        self.assertEqual(output, expected_output_r1)
+
+    def test_display2(self):
+        """
+        tests the display method
+        """
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+
+        self.r2.display()
+
+        sys.stdout = sys.__stdout__
+
+        output = capturedOutput.getvalue()
+
+        expected_output_r2 = "\n" + "  " + "##\n" + "  " + "##\n"
+
+        self.assertEqual(output, expected_output_r2)
+
+    def test_display1(self):
+        """
+        tests the display method
+        """
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+
+        self.r3.display()
+
+        sys.stdout = sys.__stdout__
+
+        output = capturedOutput.getvalue()
+
+        expected_output_r3 = "##########\n" * 5
+
+        self.assertEqual(output, expected_output_r3)
+
+    def test_display1(self):
+        """
+        tests the display method
+        """
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+
+        self.r4.display()
+
+        sys.stdout = sys.__stdout__
+
+        output = capturedOutput.getvalue()
+
+        expected_output_r4 = "\n\n\n" + (" " + "##########\n") * 5
+
+        self.assertEqual(output, expected_output_r4)
+
+    def test_display1(self):
+        """
+        tests the display method
+        """
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+
+        self.r5.display()
+
+        sys.stdout = sys.__stdout__
+
+        output = capturedOutput.getvalue()
+
+        expected_output_r5 = "####################\n" * 35
+
+        self.assertEqual(output, expected_output_r5)
+
+    def test_display1(self):
+        """
+        tests the display method
+        """
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+
+        self.r6.display()
+
+        sys.stdout = sys.__stdout__
+
+        output = capturedOutput.getvalue()
+
+        expected_output_r6 = "\n" + ("  " + "####################\n") * 35
+
+        self.assertEqual(output, expected_output_r6)
