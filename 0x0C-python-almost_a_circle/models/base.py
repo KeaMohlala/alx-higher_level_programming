@@ -3,6 +3,7 @@
 module that defines base module from
 which all the other class will inherit
 """
+import json
 
 
 class Base:
@@ -25,3 +26,22 @@ class Base:
             self.id = Base.__nb_objects
         else:
             self.id = id
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """
+        converts a list of dictionaries to
+        JSON representation.
+
+        Args:
+        list_dictionaries: a list of dictionaries to convert to
+        JSON string
+
+        Returns empty string if list dictionaries is empty or None
+        """
+        if list_dictionaries == []:
+            return "[]"
+        elif list_dictionaries is None:
+            return "[]"
+        else:
+            return json.dumps(list_dictionaries)
