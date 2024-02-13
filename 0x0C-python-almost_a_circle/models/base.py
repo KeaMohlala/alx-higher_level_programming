@@ -77,3 +77,16 @@ class Base:
             return []
         else:
             return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """
+        creates an instance with attributes already set
+
+        Args:
+        dictionary: dictionary representation of the instance
+        """
+        instance = cls.__new__(cls)
+        instance.__dict__.update(dictionary)
+        instance.__init__(**dictionary)
+        return instance
