@@ -44,17 +44,66 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(self.s3.size, 1411)
         self.assertTrue(issubclass(Square, Rectangle))
 
-    def test_validation(self):
+    def test_validation_size_1(self):
         """
-        test validation of setter methods
+        test validation of setter methods for size
         """
-        with self.assertRaises(TypeError):
-            s1 = Square(10, "2")
-            s2 = Square(10.2, 2)
-            s3 = Square(10, (0, 0))
-        with self.assertRaises(ValueError):
-            s4 = Square(-10)
-            s5 = Square(10, 3, -1)
+        with self.assertRaises(TypeError) as type_error:
+            self.s1.size = "1"
+        self.assertEqual(
+            type_error.exception.__str__(), "width must be an integer"
+        )
+
+    def test_validation_size_2(self):
+        """
+        test validation of setter methods for size
+        """
+        with self.assertRaises(ValueError) as value_error:
+            self.s1.size = -1
+            self.s2.size = 0
+        self.assertEqual(
+            value_error.exception.__str__(), "width must be > 0"
+        )
+
+    def test_validation_x_1(self):
+        """
+        test validation of setter methods for x
+        """
+        with self.assertRaises(TypeError) as type_error:
+            self.s1.x = "2"
+        self.assertEqual(
+            type_error.exception.__str__(), "x must be an integer"
+        )
+
+    def test_validation_x_2(self):
+        """
+        test validation of setter methods for x
+        """
+        with self.assertRaises(ValueError) as value_error:
+            self.s1.x = -2
+        self.assertEqual(
+            value_error.exception.__str__(), "x must be >= 0"
+        )
+
+    def test_validation_y_1(self):
+        """
+        test validation of setter methods for y
+        """
+        with self.assertRaises(TypeError) as type_error:
+            self.s1.y = "3"
+        self.assertEqual(
+            type_error.exception.__str__(), "y must be an integer"
+        )
+
+    def test_validation_y_2(self):
+        """
+        test validation of setter methods for y
+        """
+        with self.assertRaises(ValueError) as value_error:
+            self.s1.y = -3
+        self.assertEqual(
+            value_error.exception.__str__(), "y must be >= 0"
+        )
 
     def test_area(self):
         """
