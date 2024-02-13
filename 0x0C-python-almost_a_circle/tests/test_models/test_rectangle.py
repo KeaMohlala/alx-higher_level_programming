@@ -43,17 +43,86 @@ class TestRectangle(unittest. TestCase):
         self.assertEqual(self.r2.height, 2)
         self.assertTrue(issubclass(Rectangle, Base))
 
-    def test_validation(self):
+    def test_validation_width_1(self):
         """
-        test validation of setter methods
+        test validation of setter methods for width
         """
-        with self.assertRaises(TypeError):
-            r1 = Rectangle(10, "2")
-            r2 = Rectangle(10.2, 2)
-            r3 = Rectangle(10, 2, (0, 0))
-        with self.assertRaises(ValueError):
-            r4 = Rectangle(10, -12)
-            r5 = Rectangle(10, 2, 3, -1)
+        with self.assertRaises(TypeError) as type_error:
+            self.r1.width = "1"
+        self.assertEqual(
+            type_error.exception.__str__(), "width must be an integer"
+        )
+
+    def test_validation_width_2(self):
+        """
+        test validation of setter methods for width
+        """
+        with self.assertRaises(ValueError) as value_error:
+            self.r1.width = -1
+            self.r2.width = 0
+        self.assertEqual(
+            value_error.exception.__str__(), "width must be > 0"
+        )
+
+    def test_validation_height_1(self):
+        """
+        test validation of setter methods for height
+        """
+        with self.assertRaises(TypeError) as type_error:
+            self.r1.height = "2"
+        self.assertEqual(
+            type_error.exception.__str__(), "height must be an integer"
+        )
+
+    def test_validation_height_2(self):
+        """
+        test validation of setter methods for height
+        """
+        with self.assertRaises(ValueError) as value_error:
+            self.r1.height = -2
+        self.assertEqual(
+            value_error.exception.__str__(), "height must be > 0"
+        )
+
+    def test_validation_x_1(self):
+        """
+        test validation of setter methods for x
+        """
+        with self.assertRaises(TypeError) as type_error:
+            self.r1.x = "3"
+        self.assertEqual(
+            type_error.exception.__str__(), "x must be an integer"
+        )
+
+    def test_validation_x_2(self):
+        """
+        test validation of setter methods for x
+        """
+        with self.assertRaises(ValueError) as value_error:
+            self.r1.x = -3
+        self.assertEqual(
+            value_error.exception.__str__(), "x must be >= 0"
+        )
+
+    def test_validation_y_1(self):
+        """
+        test validation of setter methods for y
+        """
+        with self.assertRaises(TypeError) as type_error:
+            self.r1.y = "4"
+        self.assertEqual(
+            type_error.exception.__str__(), "y must be an integer"
+        )
+
+    def test_validation_y_2(self):
+        """
+        test validation of setter methods for y
+        """
+        with self.assertRaises(ValueError) as value_error:
+            self.r1.y = -4
+        self.assertEqual(
+            value_error.exception.__str__(), "y must be >= 0"
+        )
 
     def test_area(self):
         """
