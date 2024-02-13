@@ -4,6 +4,7 @@ module that defines base module from
 which all the other class will inherit
 """
 import json
+import os
 
 
 class Base:
@@ -90,3 +91,17 @@ class Base:
         instance.__dict__.update(dictionary)
         instance.__init__(**dictionary)
         return instance
+
+    @classmethod
+    def load_from_file(cls):
+        """
+        returns a list of instances
+        """
+        filename = cls.__name__ + ".json"
+        if not os.path.exists(filename):
+            return []
+        with open(filename, "r", encoding="utf-8") as f:
+            json_content = f.read()
+        list_of_dicts = Base.from_json_string(json_content)
+        list_of_instances = [cls.create(**item) for item in list_of_dicts]
+        return list_of_instances
