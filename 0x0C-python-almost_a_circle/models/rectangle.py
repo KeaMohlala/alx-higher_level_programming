@@ -46,10 +46,10 @@ class Rectangle(Base):
         Type Error: if width is not an integer
         Value Error: if width is less than or equal to zero
         """
-        if value <= 0:
-            raise ValueError("width must be > 0")
         if type(value) is not int:
             raise TypeError("width must be an integer")
+        if value <= 0:
+            raise ValueError("width must be > 0")
         self.__width = value
 
     @property
@@ -71,10 +71,10 @@ class Rectangle(Base):
         Type Error: if height is not an integer
         Value Error: if height is less than or equal to zero
         """
-        if value <= 0:
-            raise ValueError("height must be > 0")
         if type(value) is not int:
             raise TypeError("height must be an integer")
+        if value <= 0:
+            raise ValueError("height must be > 0")
         self.__height = value
 
     @property
@@ -96,10 +96,10 @@ class Rectangle(Base):
         Type Error: if x is not an integer
         Value Error: if x is less zero
         """
-        if value < 0:
-            raise ValueError("x must be >= 0")
         if type(value) is not int:
             raise TypeError("x must be an integer")
+        if value < 0:
+            raise ValueError("x must be >= 0")
         self.__x = value
 
     @property
@@ -121,10 +121,10 @@ class Rectangle(Base):
         Type Error: if y is not an integer
         Value Error: if y is less zero
         """
-        if value < 0:
-            raise ValueError("y must be >= 0")
         if type(value) is not int:
             raise TypeError("y must be an integer")
+        if value < 0:
+            raise ValueError("y must be >= 0")
         self.__y = value
 
     def area(self):
