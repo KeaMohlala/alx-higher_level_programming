@@ -49,7 +49,7 @@ class TestSquare(unittest.TestCase):
         test validation of setter methods for size
         """
         with self.assertRaises(TypeError) as type_error:
-            self.s1.size = "1"
+            Square("1")
         self.assertEqual(
             type_error.exception.__str__(), "width must be an integer"
         )
@@ -59,8 +59,8 @@ class TestSquare(unittest.TestCase):
         test validation of setter methods for size
         """
         with self.assertRaises(ValueError) as value_error:
-            self.s1.size = -1
-            self.s2.size = 0
+            Square(0)
+            Square(-1)
         self.assertEqual(
             value_error.exception.__str__(), "width must be > 0"
         )
@@ -70,7 +70,7 @@ class TestSquare(unittest.TestCase):
         test validation of setter methods for x
         """
         with self.assertRaises(TypeError) as type_error:
-            self.s1.x = "2"
+            Square(1, "2")
         self.assertEqual(
             type_error.exception.__str__(), "x must be an integer"
         )
@@ -80,7 +80,7 @@ class TestSquare(unittest.TestCase):
         test validation of setter methods for x
         """
         with self.assertRaises(ValueError) as value_error:
-            self.s1.x = -2
+            Square(1, -2)
         self.assertEqual(
             value_error.exception.__str__(), "x must be >= 0"
         )
@@ -90,7 +90,7 @@ class TestSquare(unittest.TestCase):
         test validation of setter methods for y
         """
         with self.assertRaises(TypeError) as type_error:
-            self.s1.y = "3"
+            Square(1, 2, "3")
         self.assertEqual(
             type_error.exception.__str__(), "y must be an integer"
         )
@@ -100,7 +100,7 @@ class TestSquare(unittest.TestCase):
         test validation of setter methods for y
         """
         with self.assertRaises(ValueError) as value_error:
-            self.s1.y = -3
+            Square(1, 2, -3)
         self.assertEqual(
             value_error.exception.__str__(), "y must be >= 0"
         )
