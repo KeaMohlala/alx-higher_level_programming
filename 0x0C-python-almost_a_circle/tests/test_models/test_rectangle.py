@@ -360,3 +360,53 @@ class TestDisplayFunction(unittest.TestCase):
         expected_output_r6 = "\n" + ("  " + "####################\n") * 35
 
         self.assertEqual(output, expected_output_r6)
+
+
+class TestClsMethods(unittest.TestCase):
+    """
+    tests for the class methods
+    """
+    def test_create(self):
+        """
+        tests the create method no width or height
+        """
+        with self.assertRaises(TypeError):
+            Rectangle.create(**{'id': 89, 'width': 1})
+            Rectangle.create(**{'id': 89})
+
+    def test_create_rectangle_with_minimal_attributes(self):
+        """
+        test create method with minimal attributes
+        """
+        r3 = Rectangle.create(**{'id': 89, 'width': 1, 'height': 2})
+        self.assertEqual(r3.id, 89)
+        self.assertEqual(r3.width, 1)
+        self.assertEqual(r3.height, 2)
+        self.assertEqual(r3.x, 0)
+        self.assertEqual(r3.y, 0)
+
+    def test_create_rectangle_with_x_attribute(self):
+        """
+        test create method with x attribute
+        """
+        r4 = Rectangle.create(
+                **{'id': 89, 'width': 1, 'height': 2, 'x': 3}
+        )
+        self.assertEqual(r4.id, 89)
+        self.assertEqual(r4.width, 1)
+        self.assertEqual(r4.height, 2)
+        self.assertEqual(r4.x, 3)
+        self.assertEqual(r4.y, 0)
+
+    def test_create_rectangle_with_xy_attributes(self):
+        """
+        test create method with xy attributes
+        """
+        r5 = Rectangle.create(
+                **{'id': 89, 'width': 1, 'height': 2, 'x': 3, 'y': 4}
+        )
+        self.assertEqual(r5.id, 89)
+        self.assertEqual(r5.width, 1)
+        self.assertEqual(r5.height, 2)
+        self.assertEqual(r5.x, 3)
+        self.assertEqual(r5.y, 4)
