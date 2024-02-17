@@ -6,6 +6,7 @@ tests for rectangle class
 import unittest
 import sys
 import io
+import os
 from unittest.mock import patch
 from models.rectangle import Rectangle
 from models.base import Base
@@ -410,3 +411,65 @@ class TestClsMethods(unittest.TestCase):
         self.assertEqual(r5.height, 2)
         self.assertEqual(r5.x, 3)
         self.assertEqual(r5.y, 4)
+
+
+class TestRectangleFileMethods(unittest.TestCase):
+    """
+    to test file methods for rectangle
+    """
+    def setUp(self):
+        """
+        Create a temporary file to use for testing
+        """
+        self.temp_file = "temp_file.json"
+
+    def tearDown(self):
+        """
+        Remove the temporary file after testing
+        """
+        if os.path.exists(self.temp_file):
+            os.remove(self.temp_file)
+
+    def test_save_to_file_none(self):
+        """
+        test save to file if no inputs is given
+        """
+        Rectangle.save_to_file(None)
+        self.assertTrue(os.path.exists(self.temp_file))
+        with open(self.temp_file, "r") as f:
+            content = f.read()
+        self.assertEqual(content, "[]")
+
+    def test_save_to_file_empty_list(self):
+        """
+        test method if save to file takes an empty list
+        """
+        Rectangle.save_to_file([])
+        self.assertTrue(os.path.exists(self.temp_file))
+        with open(self.temp_file, "r") as f:
+            content = f.read()
+        self.assertEqual(content, "[]")
+
+    def test_save_to_file_rectangle(self):
+        """
+        test method to see the number of tickets
+        """
+        r = Rectangle(1,  2)
+        Rectangle.save_to_file([r])
+        self.assertTrue(os.path.exists(self.temp_file))
+        with open(self.temp_file, "r") as f:
+            content = f.read()
+        expected_content = json.dumps([r.to_dictionary()])
+        self.assertEqual(content, expected_content)
+
+    def test_load_from_file(self):
+        """
+        test load from file
+        """
+        r = Rectangle(1,  2)
+        Rectangle.save_to_file([r])
+        loaded_rectangles = Rectangle.load_from_file()
+        self.assertEqual(len(loaded_rectangles),  1)
+        self.assertEqual(
+                loaded_rectangles[0].to_dictionary(), r.to_dictionary()
+        )
