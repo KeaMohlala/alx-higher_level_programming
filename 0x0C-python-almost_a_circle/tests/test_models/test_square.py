@@ -327,3 +327,49 @@ class TestDisplayFunction(unittest.TestCase):
         expected_output_s6 = "\n" + ("  " + "####################\n") * 20
 
         self.assertEqual(output, expected_output_s6)
+
+
+class TestClsMethods(unittest.TestCase):
+    """
+    tests for the class methods
+    """
+    def test_create(self):
+        """
+        tests the create method no size
+        """
+        with self.assertRaises(TypeError):
+            Square.create(**{'id': 89})
+
+    def test_create_rectangle_with_minimal_attributes(self):
+        """
+        test create method with minimal attributes
+        """
+        s3 = Square.create(**{'id': 89, 'size': 1})
+        self.assertEqual(s3.id, 89)
+        self.assertEqual(s3.size, 1)
+        self.assertEqual(s3.x, 0)
+        self.assertEqual(s3.y, 0)
+
+    def test_create_rectangle_with_x_attribute(self):
+        """
+        test create method with x attribute
+        """
+        s4 = Square.create(
+                **{'id': 89, 'size': 1, 'x': 2}
+        )
+        self.assertEqual(s4.id, 89)
+        self.assertEqual(s4.size, 1)
+        self.assertEqual(s4.x, 2)
+        self.assertEqual(s4.y, 0)
+
+    def test_create_rectangle_with_xy_attributes(self):
+        """
+        test create method with xy attributes
+        """
+        s5 = Square.create(
+                **{'id': 89, 'size': 1, 'x': 2, 'y': 3}
+        )
+        self.assertEqual(s5.id, 89)
+        self.assertEqual(s5.size, 1)
+        self.assertEqual(s5.x, 2)
+        self.assertEqual(s5.y, 3)
