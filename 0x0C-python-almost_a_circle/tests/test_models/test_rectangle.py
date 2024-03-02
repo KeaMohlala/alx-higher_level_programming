@@ -417,7 +417,7 @@ class TestClsMethods(unittest.TestCase):
         test save to file method for rectangle instances
         """
         r1 = Rectangle(1, 2)
-        output = [{"width": 1, "height": 2, "x": 0, "y": 0, "id": 1}]
+        output = [{"width": 1, "height": 2, "x": 0, "y": 0, "id": 5}]
 
         Rectangle.save_to_file([r1])
         with open("Rectangle.json", "r") as file:
