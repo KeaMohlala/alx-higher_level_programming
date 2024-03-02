@@ -6,6 +6,7 @@ tests for rectangle class
 import unittest
 import sys
 import io
+import json
 from unittest.mock import patch
 from models.rectangle import Rectangle
 from models.base import Base
@@ -410,3 +411,23 @@ class TestClsMethods(unittest.TestCase):
         self.assertEqual(r5.height, 2)
         self.assertEqual(r5.x, 3)
         self.assertEqual(r5.y, 4)
+
+    def test_save_to_file(self):
+        """
+        test save to file method for rectangle instances
+        """
+        r1 = Rectangle(1, 2)
+        output = [{"width": 1, "height": 2, "x": 0, "y": 0, "id": 1}]
+
+        Rectangle.save_to_file([r1])
+        with open("Rectangle.json", "r") as file:
+            json_string = file.read()
+            self.assertEqual(output, json.loads(json_string))
+
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
