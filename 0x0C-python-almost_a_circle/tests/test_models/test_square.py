@@ -5,6 +5,7 @@ tests for square class
 
 import unittest
 import sys
+import json
 import io
 from unittest.mock import patch
 from models.rectangle import Rectangle
@@ -373,3 +374,23 @@ class TestClsMethods(unittest.TestCase):
         self.assertEqual(s5.size, 1)
         self.assertEqual(s5.x, 2)
         self.assertEqual(s5.y, 3)
+
+    def test_save_to_file(self):
+        """
+        test save to file method for square instances
+        """
+        s1 = Square(1)
+        output = [{"size": 1, "x": 0, "y": 0, "id": 60}]
+
+        Square.save_to_file([s1])
+        with open("Square.json", "r") as file:
+            json_string = file.read()
+            self.assertEqual(output, json.loads(json_string))
+
+        Square.save_to_file(None)
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
