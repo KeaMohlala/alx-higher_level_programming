@@ -29,10 +29,11 @@ def main(user, password, db_name, state_name):
     query = """
         SELECT * FROM states
         WHERE name = %s
-        ORDER BY states.id;
+        ORDER BY id ASC;
     """
 
     # execute the query with the state name as a parameter
+    # SQL injection safe
     cursor.execute(query, (state_name,))
 
     rows = cursor.fetchall()
