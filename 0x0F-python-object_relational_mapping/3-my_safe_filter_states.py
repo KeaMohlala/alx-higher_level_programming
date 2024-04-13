@@ -29,7 +29,7 @@ def main(user, password, db_name, state_name):
     query = """
         SELECT * FROM states
         WHERE name = %s
-        ORDER BY id ASC;
+        ORDER BY states.id;
     """
 
     # execute the query with the state name as a parameter
