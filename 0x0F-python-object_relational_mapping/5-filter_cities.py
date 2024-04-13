@@ -36,7 +36,7 @@ def main(user, password, db_name, state_name):
     rows = cursor.fetchall()
 
     for row in rows:
-        print(row[0])
+        print(", ".join(row[0]))
 
     conn.close()
 
