@@ -42,5 +42,5 @@ def main(user, password, db_name, state_name):
 
 
 if __name__ == "__main__":
-    user, password, db_name = sys.argv[1:]
-    main(user, password, db_name)
+    user, password, db_name, state_name = sys.argv[1:]
+    main(user, password, db_name, state_name)
