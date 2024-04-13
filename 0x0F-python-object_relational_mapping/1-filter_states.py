@@ -25,7 +25,7 @@ def main(user, password, db_name):
     cursor.execute(
             """
             SELECT * FROM states
-            WHERE name LIKE 'N%'
+            WHERE name LIKE BINARY 'N%'
             ORDER by id ASC;
             """
     )
