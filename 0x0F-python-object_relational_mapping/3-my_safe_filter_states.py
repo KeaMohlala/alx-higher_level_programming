@@ -28,7 +28,7 @@ def main(user, password, db_name, state_name):
     # prepare the SQL query with the user input
     query = """
         SELECT * FROM states
-        WHERE name LIKE BINARY %s
+        WHERE name = %s
         ORDER BY id ASC;
     """
 
