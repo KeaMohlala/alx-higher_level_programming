@@ -25,7 +25,8 @@ def main(user, password, db_name, state_name):
     cursor = conn.cursor()
 
     query = """
-        SELECT cities.name FROM cities
+        SELECT cities.name
+        FROM cities
         JOIN states ON cities.state_id = states.id
         WHERE states.name = %s
         ORDER BY cities.id ASC;
@@ -35,8 +36,9 @@ def main(user, password, db_name, state_name):
 
     rows = cursor.fetchall()
 
-    for row in rows:
-        print(", ".join(row[0]))
+    first_elements = [row[0] for row in rows]
+    joined_string = ", ".join(first_elements)
+    print(joined_string)
 
     conn.close()
 
