@@ -1,3 +1,3 @@
 #!/bin/bash
-# This script sends a request to a given URL and displays the HTTP methods the server will accept.
-curl -s -I -o /dev/null "$1" | grep -i "Allow"
+# This script prints the allowed methods in a web request
+curl -sI "$1" | grep -i "Allow"
