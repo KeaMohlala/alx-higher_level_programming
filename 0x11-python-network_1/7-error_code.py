@@ -9,13 +9,12 @@ import sys
 
 def main():
     """main function"""
-    try:
-        url = sys.argv[1]
-        response = requests.get(url)
+    url = sys.argv[1]
+    response = requests.get(url)
+    if response.status_code >= 400:
+        print(f"Error code: {response.status_code}")
+    else:
         print(response.text)
-    except requests.exceptions.HTTPError as e:
-        if e.response.status_code >= 400:
-            print(f"Error code: {e.response.status_code}")
 
 
 if __name__ == "__main__":
